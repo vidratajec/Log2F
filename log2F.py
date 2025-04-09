@@ -1,26 +1,19 @@
 import json
 import numpy as np
 
-input_file = "stena-4U_starman.log"
-output_file = "Grad.json"
-
-input_log = open(input_file, "r")
-#1. korak -> preprocesiranje
-#   -> odstranitev 1 in 0 testne iteracije
-#2. korak -> formatirnje
-#3. korak -> izvoz v Json datoteko
-
-
 #settings:
 elemType = "PHANTOM" # ime tipa elementa ki nas zanima
 save2TXT = False
 save2JSON = True
 
+input_file = "stena-4U_starman.log"
+output_file = "Grad_"+ elemType +".json"
 
+input_log = open(input_file, "r")
 
 # korak 1 in 2:
 line = ""
-data = np.array([-1,-1,-1,-1,-1,-1,-1,-1,-1,-1])
+data = np.array([-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]) # for vstack
 after_iter0 = False
 
 output = {}
