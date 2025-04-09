@@ -1,6 +1,9 @@
 import json
 import numpy as np
 
+from json import encoder
+encoder.FLOAT_REPR = lambda o: format(o, '.9f') # da ne spremeni majhnih stevil na 0
+
 #settings:
 elemType = "PHANTOM" # ime tipa elementa ki nas zanima
 save2TXT = False
