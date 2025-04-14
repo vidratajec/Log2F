@@ -9,8 +9,8 @@ elemType = "PHANTOM" # ime tipa elementa ki nas zanima
 save2TXT = False
 save2JSON = True
 
-input_file = "stena-4U_starman.log"
-output_file = "Grad_"+ elemType +".json"
+input_file = "test_logs/stena-U.log"
+output_file = "Grad_0_"+ elemType +".json"
 
 input_log = open(input_file, "r")
 
@@ -20,6 +20,9 @@ data = np.array([-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]) # for vstack
 after_iter0 = False
 
 output = {}
+
+#add a zero frame
+
 
 for i in input_log:
     if elemType in i:
@@ -32,6 +35,14 @@ for i in input_log:
         #print(iter,elem,n_GP,GP_x, GP_y,f1, f2, f3, f4, f5)
         
         if iter == 0 :
+            #doda vhod 0
+            entry_zero = {
+                "x" : -1,
+                "y" : -1,
+                "F" : [1, 0, 0, 1, 1]
+            }
+            output.setdefault(iter, {}).setdefault(elem, {})[n_GP] = entry_zero
+            print(iter,elem,n_GP,GP_x, GP_y,f1, f2, f3, f4, f5)
             after_iter0 = True
         
         if (after_iter0 == True and iter > 0 ):
